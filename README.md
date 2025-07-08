@@ -49,10 +49,10 @@ Uses english_words and nltk word sets
 Ensure you have internet for nltk.download() on first run.
 
 # Future Improvements
- Add batch processing for multiple words
- Export results to CSV/JSON/TXT file
- Implement different dictionary sources
- Performance optimization for very long words
+ - Add batch processing for multiple words
+ - Export results to CSV/JSON/TXT file
+ - Implement different dictionary sources
+ - Performance optimization for very long words
 
 # LICENCE
 MIT
