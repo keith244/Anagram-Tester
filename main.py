@@ -7,11 +7,14 @@ from itertools import combinations,permutations
 # import itertools
 # import english_words
 from wordfreq import word_frequency 
+from illegal_words import blacklist
+import time
 
 # print(web2lowerset)
 nltk.download('words')
 
 WORD_LENGTH = 5
+MAX_WORD_LENGTH = 10
 def take_user_input():
     web2lowerset = get_english_words_set(['web2'], lower=True)
 
@@ -22,6 +25,8 @@ def take_user_input():
         cleaned_user_input= ''.join(c for c in user_word if c.isalpha())    
         if len(cleaned_user_input) < WORD_LENGTH:
             print(f'The word {user_word} is too short. Use a word with a minimum of {WORD_LENGTH} letters!')
+        elif len(cleaned_user_input) >MAX_WORD_LENGTH:
+            print(f'This word is taking too long to process. Max word length should be {MAX_WORD_LENGTH}')
         else:
             if cleaned_user_input in web2lowerset:
                 print('Found it')
@@ -45,7 +50,7 @@ def find_combination_in_dictionary(word,word_set):
 
     valid_combinations= []
     for combination in sorted(all_combinations):
-        if combination in word_set and word_frequency(combination,'en')>1e-6:
+        if combination in word_set and word_frequency(combination,'en')>1e-6 and combination not in blacklist:
             print(f'It exists {combination}')
             valid_combinations.append(combination)
     
