@@ -1,4 +1,4 @@
-blacklist = ['aa', 'ae', 'ai', 'ao', 'au', 'ab', 'ac', 'af', 'ag', 'aj', 'ak', 'ap', 'aq', 'av', 'az',
+blacklist = ['aa', 'ae', 'ai', 'ao', 'au', 'ab', 'ac', 'af', 'ag', 'aj', 'ak', 'ap', 'aq', 'ar', 'av', 'az',
  'ba', 'bi', 'bo', 'bu',
  'ca', 'ce', 'ci', 'co', 'cu', 'cy',
  'da', 'de', 'di', 'du', 'dy',
