@@ -1,17 +1,14 @@
 """This is a python program to test anagrams in 5+ letter words in the English Language"""
 
-import nltk
-# from nltk.corpus import words
+
+
 from english_words import get_english_words_set
 from itertools import combinations,permutations
-# import itertools
-# import english_words
 from wordfreq import word_frequency 
 from illegal_words import blacklist
 import time
 
-# print(web2lowerset)
-nltk.download('words')
+
 
 WORD_LENGTH = 5
 MAX_WORD_LENGTH = 10
@@ -35,31 +32,32 @@ def take_user_input():
                 print('No match')
             # return cleaned_user_input
 
-def find_combination_in_dictionary(word,word_set):
+def find_sub_anagrams(word,word_set):
     print(f'You entered {word}')
     print('Trying all combinations')
+
     # the word is split to individual letters and then recombined in different orders to form a new word
-    all_combinations = set()
+    generated_words = set()
 
     for i in range (2,len(word)+1):
         perms = permutations(word,i)
         for p in perms:
-            combinations = ''.join(p)
-            all_combinations.add(combinations)
-    print(f' Found {len(all_combinations)} unique combinations.')
+            candidate = ''.join(p)
+            generated_words.add(candidate)
+    print(f' Found {len(generated_words)} unique combinations.')
 
-    valid_combinations= []
-    for combination in sorted(all_combinations):
-        if combination in word_set and word_frequency(combination,'en')>1e-6 and combination not in blacklist:
-            print(f'It exists {combination}')
-            valid_combinations.append(combination)
+    valid_words= []
+    for candidate in sorted(generated_words):
+        if candidate in word_set and word_frequency(candidate,'en')>1e-6 and candidate not in blacklist:
+            print(f'It exists {candidate}')
+            valid_words.append(candidate)
     
-    print(f'\nSummary: Found {len(valid_combinations)} valid words: {valid_combinations}')
+    print(f'\nSummary: Found {len(valid_words)} valid words: {valid_words}')
     
 
 web2lowerset = get_english_words_set(['web2'], lower=True)
 user_word = take_user_input()
 if user_word:
-    find_combination_in_dictionary(user_word, web2lowerset)
+    find_sub_anagrams(user_word, web2lowerset)
 else:
     print('Goodbye')
